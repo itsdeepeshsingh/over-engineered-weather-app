@@ -30,8 +30,30 @@ function App() {
       console.log(process.env.API_ENDPOINT)
       fetch(`http://localhost:8000/weather/currentlocation?lat=${lat}&long=${long}`)
       .then(res => console.log(res.json()))
+    },
+    (error) => {
+      console.error('Geolocation error:', error);
 
-    });
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          console.error('User denied location access');
+          break;
+
+        case error.POSITION_UNAVAILABLE:
+          console.error('Location unavailable');
+          break;
+
+        case error.TIMEOUT:
+          console.error('Location request timed out');
+          break;
+
+        default:
+          console.error('Unknown geolocation error');
+      }
+    },{   enableHighAccuracy: false,
+  timeout: 4000,
+  maximumAge: Infinity }
+);
   }, []);
 
   return (
