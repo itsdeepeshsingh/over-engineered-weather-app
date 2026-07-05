@@ -1,6 +1,6 @@
 # OVER ENGINEERED WEATHER APP
 
-Yes, It's another weather app.
+Yes, It's another weather app!
 
 Features/ Planned Features:
 #### 1. FAST API:
